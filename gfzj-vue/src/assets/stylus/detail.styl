@@ -1,0 +1,271 @@
+
+.img-wrap
+  img
+    display block
+    width 100%
+
+// 音频主体
+.audio-wrap
+  width 100%
+  height 100%
+  background-color #ffffff
+  position relative
+  clearfix()
+
+  .audio-bg
+    display block
+    width 100%
+
+.time
+  width 100%
+  height .16rem
+  position absolute
+  left 0
+  bottom .06rem
+  z-index 0
+#playTime
+  position absolute
+  left .15rem
+  bottom 0
+  font-size .16rem
+  color: #d79362;
+#totalTime
+  position absolute
+  right .15rem
+  bottom 0
+  font-size: .16rem;
+  color: #e4ccba;
+// 进度条
+.audio-time-bar
+  height: .05rem;
+  background-color: #f5e9e2;
+  margin-left .15rem
+  margin-right .15rem
+  position: relative;
+  bottom 0
+  z-index: 2;
+  border-radius .04rem
+  .w10
+    width .1rem
+    height: .05rem;
+    position absolute
+    left 0
+    top 0
+    background-color: #ff704c;
+    z-index 5
+    border-radius .04rem 0 0 .04rem
+
+.progress-bar{
+  height: .05rem;
+  background-color: #ff704c;
+  position absolute
+  left 0
+  //left .1rem
+  top 0
+  z-index: 4;
+  border-radius .04rem
+}
+#bar-point{
+  display block
+  width: .18rem;
+  height: .18rem;
+  background-color: #ff704c;
+  border .02rem solid #ffdbd2
+  border-radius: 100%;
+  position absolute
+  right -.15rem
+  top -.06rem
+  z-index 3
+  box-shadow 0 0 .04rem rgba(225,225,225,.8)
+}
+#load-present-bar{
+  width: .6rem;
+  height: .05rem;
+  background-color: #f5e9e2;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  border-radius .04rem
+}
+
+.audio-container{
+  width: 50%;
+  height 51.315%
+  position: absolute;
+  left: 25%;
+  top: 9.65%;
+  border-radius: 100%;
+  overflow: hidden;
+}
+.audio-title-wrap
+  height .38rem
+  position: absolute;
+  left .15rem
+  right .15rem
+  bottom: 19.5%;
+  overflow: hidden;
+
+#audio-title{
+  width: 100%;
+  color: #d79362;
+  text-align: center;
+  font-weight: bold;
+  font-size: .16rem;
+  line-height 1.2
+  position absolute
+  left 0
+  top 50%
+  transform: translateY(-50%);
+}
+
+#audio-brief{
+  position: absolute;
+  left: 0
+  bottom: 8%;
+  padding: 0 .15rem;
+  font-size: .12rem;
+  color: #b3b3b3;
+  height: .38rem;
+  overflow: hidden;
+}
+
+.play .audio-img{
+  -webkit-animation:audio-rotate 6s  linear infinite;
+  animation:audio-rotate 6s linear infinite;
+}
+.audio-container .audio-img{
+  display: block;
+  width: 100%;
+  border-radius 100%
+  border: none;
+  transition: all 1s;
+}
+
+.btn-play
+  width: 40%;
+  position: absolute;
+  left: 30%;
+  top: 30%;
+  //background: url("../assets/img/icon-stop.png") no-repeat center center;
+  //background-size: 100%;
+  img
+    width 100%
+
+.stop{
+  //background: url("../assets/img/icon-play.png") no-repeat center center;
+  //background-size: 100%;
+}
+// 作者
+.author-wrap
+  padding: .5rem .2rem .3rem .2rem;
+  background-color: #ffffff;
+  overflow: hidden;
+  .icon-fav
+    background-color #5aacff
+    color #ffffff
+    line-height .26rem
+    text-align center
+    border-radius .04rem
+    &:active
+      box-shadow: inset 0 0.02rem 0.03rem rgba(0,0,0,0.3);
+  .had-fav
+    background-color: #d1d1d1;
+
+.author-detail
+  margin: 0 0 0 .7rem;
+  p
+    color: #b3b3b3;
+    margin: .05rem 0;
+    font-size: .14rem;
+    line-height 1.5
+    max-height .6rem
+    overflow hidden
+  strong
+    font-size .16rem
+    color #ff907b
+    vertical-align middle
+
+.question-wrap
+  height 1.15rem
+  border .02rem solid #f5e9e2
+  border-radius .08rem
+  overflow hidden
+  margin .1rem 0
+  textarea
+    display block
+    width 100%
+    resize none
+    border none
+    font-size .14rem
+    padding .1rem
+    &:focus
+      border none
+  .bg-grey
+    margin 0 .05rem .05rem .05rem
+    border-radius .04rem
+    font-size .11rem
+    i
+    span
+      vertical-align middle
+  .btn
+    font-size .14rem
+    width auto
+    line-height 1
+    padding .05rem .08rem
+    border-radius .04rem
+    margin 0
+    position absolute
+    right .25rem
+  .limit-free
+    display inline-block
+    width .8rem
+    text-align left
+    vertical-align middle
+    img
+      display block
+      width 100%
+    .font-pink-lither
+      display block
+      width .62rem
+      border .01rem solid #ffc1b2
+      font-size .13rem
+      padding 0 .08rem
+      border-radius .05rem 0 .05rem .05rem
+      margin-top -.11rem
+      text-align center
+  .surplus-content
+    display inline-block
+    text-align left
+    margin-left .1rem
+    vertical-align middle
+    p
+      margin 0
+      font-size .12rem
+
+.checked-wrap
+  margin-top -.05rem
+  .icon-check
+    width .24rem
+    height .24rem
+    border .01rem solid #f5e9e2
+    border-radius .04rem
+    vertical-align middle
+  span
+    vertical-align middle
+    margin-left .05rem
+    font-size .12rem
+
+  &.selected
+    .icon-check
+      background url("../assets/img/icon-tick.png") no-repeat center center
+      background-size 60%
+
+.clearfix
+  &:before
+  &:after
+    display table
+    content ""
+    line-height 0
+  &:after
+    clear both
