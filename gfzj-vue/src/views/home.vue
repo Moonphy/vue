@@ -501,7 +501,7 @@
         this.answerPay(aid, (res) => {
           self.currentUrl = res.answer_url
           item.currentUrl = self.currentUrl
-          if (self.machineType !== 'andriod') {
+          if (self.machineType !== 'android') {
             setTimeout(() => {
               self.voiceAudio.play()
               self.setState(false)

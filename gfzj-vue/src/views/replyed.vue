@@ -80,6 +80,7 @@
         voiceAudio: '',
         qid: '',
         currentUrl: '',
+        _currentUrl: '',
         playing: false,
         audioItems: [],
         following: false,
@@ -164,7 +165,7 @@
         })
       },
       pay () {
-        if (this.isOpenByWeixin('「微信扫一扫，继续下一步」') === false) return
+        // if (this.isOpenByWeixin('「微信扫一扫，继续下一步」') === false) return
         var self = this
         if (this.voiceAudio === '') {
           this.voiceAudio = document.getElementById('reply_1')
@@ -175,6 +176,7 @@
 
           this.voiceAudio.addEventListener('canplay', () => {
             self.setState(false)
+            self.playing = true
             self.voiceAudio.play()
           })
         }
@@ -183,25 +185,39 @@
           this.playing = false
           return
         }
-        if (this.currentUrl) {
+        if (self._currentUrl) {
+          this.currentUrl = self._currentUrl
           this.playing = true
-          setTimeout(() => { self.voiceAudio.play() }, 100)
+          // this.question.user_name = this.currentUrl
+          // document.getElementById('reply_1').play()
+          setTimeout(() => { self.voiceAudio.play() }, 500)
           return
         }
         // self.audioss = self.voiceAudio ? '----' : ''
         this.playing = false
         this.setState(true)
+        // api.common.getData('http://dev.fake.gaofen.com/huodong/weixin_zhongkao_index/home', (res) => {
         this.answerPay(this.question.answer_id, (res) => {
-          self.currentUrl = res.answer_url
-          if (self.machineType !== 'andriod') {
-        // self.currentUrl = 'http://i.dev.gaofen.com/uploads/specialist/voice/20160923/4c7be528d4393ab50110e030c68ff55d.mp3'
-            self.question.heat_num = self.question.heat_num + 1
-            setTimeout(() => {
-              self.playing = true
-              self.setState(false)
-              self.voiceAudio.play()
-              // self.audioss = self.voiceAudio ? '--ssss--' : ''
-            }, 500)
+          // var url = 'http://i.gaofen.com/uploads/specialist/voice/20170307/25da401ac68a90a1bca45dbd78c4d625.mp3'
+          self._currentUrl = res.answer_url
+          // console.log(self.currentUrl)
+          self.question.heat_num = self.question.heat_num + 1
+          if (self.machineType !== 'android') {
+            // self.currentUrl = 'http://i.dev.gaofen.com/uploads/specialist/voice/20170307/25da401ac68a90a1bca45dbd78c4d625.mp3'
+            // self.playing = true
+            self.setState(false)
+            // self.voiceAudio.play()
+            // setTimeout(() => {
+            //   self.pay()
+            //   self.currentUrl = ''
+            // }, 200)
+            // setTimeout(() => {
+            //   self.currentUrl = url
+            //   self.pay()
+            // }, 500)
+            self.addNotice({type: 'success', content: '可以播放，请再次点击'})
+          } else {
+            self.currentUrl = res.answer_url
           }
         })
       },

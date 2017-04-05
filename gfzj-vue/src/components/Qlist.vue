@@ -30,7 +30,7 @@
 </template>
 
 <script>
-  import { setCid } from '../store/actions'
+  import { setCid, addNotice } from '../store/actions'
   import store from '../store/store.js'
   export default {
     vuex: {
@@ -38,7 +38,8 @@
         componentId: ({ system }) => system.componentId
       },
       actions: {
-        setCid
+        setCid,
+        addNotice
       }
     },
     store,
@@ -96,21 +97,32 @@
         audio = document.getElementById('qlist_' + this.qlistid)
         audio.pause()
         if (index === this.playingIndex) {
-          self.currentUrl = ''
+          this.currentUrl = ''
+          this.playingIndex = ''
           return
         }
-        if (item.currentUrl) {
+        if (item.currentUrl || item._currentUrl) {
           this.playingIndex = index
+          item.currentUrl = item.currentUrl || item._currentUrl
           this.currentUrl = item.currentUrl
+          if (/i(Phone|P(o|a)d)/.test(navigator.userAgent)) {
+            setTimeout(() => { audio.play() }, 500)
+          }
           return
         }
         this.playingIndex = ''
         this.$dispatch('answerPay', item.answer_id, (res) => {
-          self.playingIndex = index
-          self.currentUrl = res.answer_url
-          item.currentUrl = self.currentUrl
+          // self.playingIndex = index
+          // self.currentUrl = res.answer_url
+          // item.currentUrl = self.currentUrl
           if (/i(Phone|P(o|a)d)/.test(navigator.userAgent)) {
-            setTimeout(() => { audio.play() }, 500)
+            item._currentUrl = res.answer_url
+            self.addNotice({type: 'success', content: '可以播放，请再次点击'})
+            // setTimeout(() => { audio.play() }, 500)
+          } else {
+            self.playingIndex = index
+            self.currentUrl = res.answer_url
+            item.currentUrl = self.currentUrl
           }
         })
       },

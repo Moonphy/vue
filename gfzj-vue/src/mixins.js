@@ -92,7 +92,7 @@ export var globalMixins = {
       }
       if (this.wxinited !== false) return
       let self = this
-      api.common.getWxconfig(this.apiInterface.wxconfig, {url: window.location.href}).then((res) => {
+      api.common.getWxconfig(this.apiInterface.wxconfig, {url: window.location.href.split('#')[0]}).then((res) => {
         if (res.data.errno === 0) {
           let rsm = this.toJson(res.data.rsm)
           this.regwx(rsm, {
